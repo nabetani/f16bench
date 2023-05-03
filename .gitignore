@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+.ninja_deps
+.ninja_log
+bin/clang_o2
+bin/clang_o3
+bin/gcc_o2
+bin/gcc_o3
+.vscode/settings.json

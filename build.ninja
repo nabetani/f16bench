@@ -1,0 +1,37 @@
+
+rule cc_clang_o2
+     deps    = gcc
+     depfile = $out.d
+     command = clang++ -O2 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+
+rule cc_clang_o3
+     deps    = gcc
+     depfile = $out.d
+     command = clang++ -O3 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+
+rule cc_gcc_o2
+     deps    = gcc
+     depfile = $out.d
+     command = g++ -O2 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+
+rule cc_gcc_o3
+     deps    = gcc
+     depfile = $out.d
+     command = g++ -O3 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+
+
+rule link_clang
+     command = clang++ $ldflags $target_arch $in $loadlibes $ldlibs -o $out
+
+rule link_gcc
+     command = g++ $ldflags $target_arch $in $loadlibes $ldlibs -o $out
+
+build bin/clang_o3: link_clang int/clang_o3_main.o
+build bin/clang_o2: link_clang int/clang_o2_main.o
+build bin/gcc_o3: link_gcc int/gcc_o3_main.o
+build bin/gcc_o2: link_gcc int/gcc_o2_main.o
+
+build int/clang_o3_main.o: cc_clang_o3 src/main.cpp
+build int/clang_o2_main.o: cc_clang_o2 src/main.cpp
+build int/gcc_o3_main.o: cc_gcc_o3 src/main.cpp
+build int/gcc_o2_main.o: cc_gcc_o3 src/main.cpp
