@@ -1,0 +1,17 @@
+
+clang_o3
+sizeof(f)=8  r=3039:4.84971
+sizeof(f)=4  r=3039:4.36408
+sizeof(f)=2  r=3056:4.16308
+clang_o2
+sizeof(f)=8  r=3039:6.13983
+sizeof(f)=4  r=3039:5.10604
+sizeof(f)=2  r=3056:4.82262
+gcc_o3
+sizeof(f)=8  r=3039:6.14517
+sizeof(f)=4  r=3039:6.07867
+sizeof(f)=2  r=3056:4.97438
+gcc_o2
+sizeof(f)=8  r=3039:3.00658
+sizeof(f)=4  r=3039:3.59675
+sizeof(f)=2  r=3056:4.06513

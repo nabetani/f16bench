@@ -1,3 +1,4 @@
+cppflags = -std=c++17 -Wall
 
 rule cc_clang_o2
      deps    = gcc
@@ -26,6 +27,11 @@ rule link_clang
 rule link_gcc
      command = g++ $ldflags $target_arch $in $loadlibes $ldlibs -o $out
 
+rule run
+     command = bash run.sh
+
+build result.txt: run run.sh bin/clang_o3 bin/clang_o2 bin/gcc_o3 bin/gcc_o2
+
 build bin/clang_o3: link_clang int/clang_o3_main.o
 build bin/clang_o2: link_clang int/clang_o2_main.o
 build bin/gcc_o3: link_gcc int/gcc_o3_main.o
@@ -35,3 +41,4 @@ build int/clang_o3_main.o: cc_clang_o3 src/main.cpp
 build int/clang_o2_main.o: cc_clang_o2 src/main.cpp
 build int/gcc_o3_main.o: cc_gcc_o3 src/main.cpp
 build int/gcc_o2_main.o: cc_gcc_o3 src/main.cpp
+
