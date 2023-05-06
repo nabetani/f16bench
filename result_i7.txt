@@ -1,0 +1,43 @@
+
+clang_o3
+float2  r=-576 tick=103.115
+float4  r=-576 tick=15.4584
+float8  r=-576 tick=43.1225
+int__2  r=-576 tick=42.4276
+int__4  r=-576 tick=11.5688
+int__8  r=-576 tick=48.628
+clang_o2
+float2  r=-576 tick=97.8647
+float4  r=-576 tick=14.9375
+float8  r=-576 tick=42.7845
+int__2  r=-576 tick=45.1212
+int__4  r=-576 tick=11.9055
+int__8  r=-576 tick=42.8564
+clang_o3 (rosetta)
+float2  r=-576 tick=519.279
+float4  r=-576 tick=35.4487
+float8  r=-576 tick=36.9872
+int__2  r=-576 tick=35.8731
+int__4  r=-576 tick=34.9715
+int__8  r=-576 tick=35.7726
+clang_o2 (rosetta)
+float2  r=-576 tick=518.249
+float4  r=-576 tick=35.007
+float8  r=-576 tick=38.1095
+int__2  r=-576 tick=38.2081
+int__4  r=-576 tick=41.1469
+int__8  r=-576 tick=36.9567
+gcc_o3
+float2  r=-576 tick=97.081
+float4  r=-576 tick=21.919
+float8  r=-576 tick=30.171
+int__2  r=-576 tick=29.89
+int__4  r=-576 tick=12.862
+int__8  r=-576 tick=32.127
+gcc_o2
+float2  r=-576 tick=94.5
+float4  r=-576 tick=22.11
+float8  r=-576 tick=32.224
+int__2  r=-576 tick=29.889
+int__4  r=-576 tick=11.748
+int__8  r=-576 tick=31.408
