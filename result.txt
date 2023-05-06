@@ -1,17 +1,43 @@
 
 clang_o3
-sizeof(f)=8  r=3039:4.84971
-sizeof(f)=4  r=3039:4.36408
-sizeof(f)=2  r=3056:4.16308
+float2  r=-3408 tick=18.0048
+float4  r=-3408 tick=16.952
+float8  r=-3408 tick=17.8866
+int__2  r=-3408 tick=11.2771
+int__4  r=-3408 tick=12.7458
+int__8  r=-3408 tick=18.5912
 clang_o2
-sizeof(f)=8  r=3039:6.13983
-sizeof(f)=4  r=3039:5.10604
-sizeof(f)=2  r=3056:4.82262
+float2  r=-3408 tick=15.629
+float4  r=-3408 tick=15.262
+float8  r=-3408 tick=17.1218
+int__2  r=-3408 tick=11.3234
+int__4  r=-3408 tick=12.7774
+int__8  r=-3408 tick=18.5839
+clang_o3 (rosetta)
+float2  r=-3408 tick=264.055
+float4  r=-3408 tick=15.2087
+float8  r=-3408 tick=17.6524
+int__2  r=-3408 tick=14.2015
+int__4  r=-3408 tick=14.3702
+int__8  r=-3408 tick=21.8682
+clang_o2 (rosetta)
+float2  r=-3408 tick=268.617
+float4  r=-3408 tick=15.1965
+float8  r=-3408 tick=18.728
+int__2  r=-3408 tick=13.4703
+int__4  r=-3408 tick=14.2881
+int__8  r=-3408 tick=23.5675
 gcc_o3
-sizeof(f)=8  r=3039:6.14517
-sizeof(f)=4  r=3039:6.07867
-sizeof(f)=2  r=3056:4.97438
+float2  r=-3408 tick=35.234
+float4  r=-3408 tick=24.795
+float8  r=-3408 tick=26.974
+int__2  r=-3408 tick=11.293
+int__4  r=-3408 tick=12.851
+int__8  r=-3408 tick=18.782
 gcc_o2
-sizeof(f)=8  r=3039:3.00658
-sizeof(f)=4  r=3039:3.59675
-sizeof(f)=2  r=3056:4.06513
+float2  r=-3408 tick=38.924
+float4  r=-3408 tick=24.293
+float8  r=-3408 tick=26.685
+int__2  r=-3408 tick=11.291
+int__4  r=-3408 tick=12.812
+int__8  r=-3408 tick=18.679
