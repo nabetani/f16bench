@@ -1,6 +1,8 @@
 #include <iostream>
 #include <chrono>
 #include <array>
+#include <vector>
+#include <algorithm>
 
 using stdclock = std::chrono::high_resolution_clock;
 
@@ -8,7 +10,7 @@ template <typename f_>
 struct calc
 {
     using f = f_;
-    static constexpr size_t S = (1 << 8);
+    static constexpr size_t S = (1 << 7);
     using vals = std::array<f, S>;
     using o_vals = std::array<vals, S>;
 
@@ -53,21 +55,39 @@ struct calc
         }
     }
 
+    f sum() const {
+        std::vector<f> s;
+        s.reserve(S*S);
+        for (auto const &v : o_)
+        {
+            for (auto const &e : v)
+            {
+                s.push_back(e);
+            }
+        }
+        std::sort( s.begin(), s.end() );
+        auto b = s.begin();
+        auto e = s.end();
+        f v=0;
+        while( b!=e ){
+            if (v<0){
+                --e;
+                v+=*e;
+            } else {
+                v+=*b;
+                ++b;
+            }
+        }
+        return v;
+    }
+
     f get()
     {
-        for (size_t i = 0; i < (1 << 8); ++i)
+        for (size_t i = 0; i < (1 << 12); ++i)
         {
             progress();
         }
-        f sum = 0;
-        for (auto &v : o_)
-        {
-            for (auto &e : v)
-            {
-                sum += e;
-            }
-        }
-        return sum;
+        return sum();
     }
 };
 
