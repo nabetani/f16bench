@@ -1,44 +1,68 @@
-cppflags = -std=c++17 -Wall
+cppflags = -std=c++17 -Wall $
+           -MMD -MP
+
+gcc = g++-13
+
+intel = --target=x86_64-apple-macos13 -msse4.2
+
+native = -march=native
 
 rule cc_clang_o2
      deps    = gcc
      depfile = $out.d
-     command = clang++ -O2 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+     command = clang++ $native -O2 -MF $out.d $cppflags -c -o $out $in
 
 rule cc_clang_o3
      deps    = gcc
      depfile = $out.d
-     command = clang++ -O3 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+     command = clang++ $native -O3 -MF $out.d $cppflags -c -o $out $in
+
+rule cci_clang_o2
+     deps    = gcc
+     depfile = $out.d
+     command = clang++ $intel -O2 -MF $out.d $cppflags -c -o $out $in
+
+rule cci_clang_o3
+     deps    = gcc
+     depfile = $out.d
+     command = clang++ $intel -O3 -MF $out.d $cppflags -c -o $out $in
 
 rule cc_gcc_o2
      deps    = gcc
      depfile = $out.d
-     command = g++ -O2 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+     command = $gcc $native -O2 -MF $out.d $cppflags -c -o $out $in
 
 rule cc_gcc_o3
      deps    = gcc
      depfile = $out.d
-     command = g++ -O3 -MMD -MP -MF $out.d $cppflags $target_arch -c -o $out $in
+     command = $gcc $native -O3 -MF $out.d $cppflags -c -o $out $in
 
 
 rule link_clang
-     command = clang++ $ldflags $target_arch $in $loadlibes $ldlibs -o $out
+     command = clang++ $native $ldflags $in $loadlibes $ldlibs -o $out
+
+rule linki_clang
+     command = clang++ $intel $ldflags $in $loadlibes $ldlibs -o $out
 
 rule link_gcc
-     command = g++ $ldflags $target_arch $in $loadlibes $ldlibs -o $out
+     command = $gcc $native $ldflags $in $loadlibes $ldlibs -o $out
 
 rule run
      command = bash run.sh
 
-build result.txt: run run.sh bin/clang_o3 bin/clang_o2 bin/gcc_o3 bin/gcc_o2
+build result.txt: run run.sh bin/clang_o3 bin/clang_o2 bin/gcc_o3 bin/gcc_o2 bin/iclang_o3 bin/iclang_o2
 
 build bin/clang_o3: link_clang int/clang_o3_main.o
 build bin/clang_o2: link_clang int/clang_o2_main.o
+build bin/iclang_o3: linki_clang int/iclang_o3_main.o
+build bin/iclang_o2: linki_clang int/iclang_o2_main.o
 build bin/gcc_o3: link_gcc int/gcc_o3_main.o
 build bin/gcc_o2: link_gcc int/gcc_o2_main.o
 
 build int/clang_o3_main.o: cc_clang_o3 src/main.cpp
 build int/clang_o2_main.o: cc_clang_o2 src/main.cpp
+build int/iclang_o3_main.o: cci_clang_o3 src/main.cpp
+build int/iclang_o2_main.o: cci_clang_o2 src/main.cpp
 build int/gcc_o3_main.o: cc_gcc_o3 src/main.cpp
 build int/gcc_o2_main.o: cc_gcc_o3 src/main.cpp
 
