@@ -19,7 +19,7 @@ struct calc
         {
             for (auto &e : v)
             {
-                e = s-8;
+                e = s - 8;
                 s = (s + 5) % 7;
             }
         }
@@ -31,17 +31,23 @@ struct calc
         {
             auto &v0 = o_[i];
             auto &v1 = o_[(i + 3) % S];
-            auto &v2 = o_[(i*2 + 5) % S];
+            auto &v2 = o_[(i * 2 + 5) % S];
             for (size_t j = 0; j < S; ++j)
             {
-                v0[j] += v1[j]*v2[j];
+                v0[j] += (j % 2)
+                             ? (v1[j] + 1) * v2[j]
+                             : v1[j] * (v2[j] - 1);
             }
-            constexpr f lim = 8;
-            for( auto & e : v0 ){
-                if (lim<e){
-                    e = -lim;
-                } else if ( e < -lim ){
-                    e = lim;
+            constexpr f lim = 4;
+            for (auto &e : v0)
+            {
+                if (lim < e)
+                {
+                    e = -1;
+                }
+                else if (e < -lim)
+                {
+                    e = 1;
                 }
             }
         }
@@ -77,8 +83,8 @@ void run(int src, bool output)
         return;
     }
     auto d = (t1 - t0).count() * 1e-6;
-    std::cout                                //
-        << (f{1}/2*2==1 ? "float" : "int__") << sizeof(f) << "  " //
+    std::cout                                                           //
+        << (f{1} / 2 * 2 == 1 ? "float" : "int__") << sizeof(f) << "  " //
         << "r=" << (double)r << " tick=" << d << std::endl;
 }
 
